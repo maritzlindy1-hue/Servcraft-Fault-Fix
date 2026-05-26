@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Donovan Dashboard</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f4f6f9;
+            margin: 20px;
+        }
+        h1 {
+            color: #003366;
+        }
+        .cards {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 220px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+            margin-top: 20px;
+        }
+        th {
+            background: #003366;
+            color: white;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Donovan Ticket Dashboard</h1>
+
+<div class="cards">
+    <div class="card">
+        <h3>Total Tickets</h3>
+        <h2>{{ total_tickets }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Active Tickets</h3>
+        <h2>{{ active_tickets }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Tickets Stuck >3 Days</h3>
+        <h2>{{ stuck_count }}</h2>
+    </div>
+
+    <div class="card">
+        <h3>Average Days In Status</h3>
+        <h2>{{ avg_days }}</h2>
+    </div>
+</div>
+
+<h2>Status Summary</h2>
+
+<table>
+    <tr>
+        <th>Status</th>
+        <th>Count</th>
+    </tr>
+
+    {% for row in status_summary %}
+    <tr>
+        <td>{{ row['Job Status'] }}</td>
+        <td>{{ row['Count'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<h2>Ticket Details</h2>
+
+<table>
+    <tr>
+        <th>Job Number</th>
+        <th>Status</th>
+        <th>Days In Status</th>
+        <th>Assigned To</th>
+    </tr>
+
+    {% for row in tickets %}
+    <tr>
+        <td>{{ row['Job Number'] }}</td>
+        <td>{{ row['Job Status'] }}</td>
+        <td>{{ row['Days In Status'] }}</td>
+        <td>{{ row['Assigned To'] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
